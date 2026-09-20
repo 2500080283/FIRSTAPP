@@ -1,4 +1,4 @@
-﻿// Tasks & Notes Manager with Full-Stack Sync & LocalStorage Fallback
+// Tasks & Notes Manager with Full-Stack Sync & LocalStorage Fallback
 let appTasks = JSON.parse(localStorage.getItem('devsprint_tasks')) || [
     { id: 1, text: "Complete KL University Front-End Lab Experiments", priority: "high", done: true },
     { id: 2, text: "Review Operating Systems Chapter 3", priority: "med", done: false },

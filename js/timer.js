@@ -1,4 +1,4 @@
-﻿// Pomodoro Timer Controller
+// Pomodoro Timer Controller
 let timerInterval = null;
 let timeLeft = 25 * 60;
 let isRunning = false;

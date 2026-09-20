@@ -1,4 +1,4 @@
-﻿const express = require('express');
+const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
@@ -105,6 +105,10 @@ app.put('/api/notes', (req, res) => {
     res.json({ success: true, data });
 });
 
-app.listen(PORT, () => {
-    console.log(`DevSprint Full-Stack Server running at http://localhost:${PORT}`);
-});
+module.exports = app;
+
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`DevSprint Full-Stack Server running at http://localhost:${PORT}`);
+    });
+}
