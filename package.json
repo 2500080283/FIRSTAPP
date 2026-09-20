@@ -1,0 +1,16 @@
+﻿{
+  "name": "devsprint-backend",
+  "version": "1.0.0",
+  "description": "REST API Backend for DevSprint Student Productivity Suite",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "author": "Ch. Prudhvi Raj (2500080283)",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0"
+  }
+}

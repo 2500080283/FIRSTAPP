@@ -1,0 +1,5 @@
+﻿[
+  { "id": 1, "text": "Complete KL University Front-End Lab Experiments", "priority": "high", "done": true },
+  { "id": 2, "text": "Review Operating Systems Chapter 3", "priority": "med", "done": false },
+  { "id": 3, "text": "Prepare Database Schema for Web Project", "priority": "high", "done": false }
+]
