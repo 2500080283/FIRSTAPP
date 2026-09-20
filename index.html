@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSprint - Student Productivity Suite</title>
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <span>⚡</span> DevSprint
+        </div>
+
+        <ul class="nav-links">
+            <li>
+                <button class="nav-btn active" data-target="dashboard">
+                    <span>📊</span> Dashboard
+                </button>
+            </li>
+            <li>
+                <button class="nav-btn" data-target="timer">
+                    <span>⏱️</span> Pomodoro Focus
+                </button>
+            </li>
+            <li>
+                <button class="nav-btn" data-target="tasks">
+                    <span>✅</span> Assignments & Tasks
+                </button>
+            </li>
+            <li>
+                <button class="nav-btn" data-target="notes">
+                    <span>📝</span> Study Notes
+                </button>
+            </li>
+        </ul>
+
+        <div class="user-profile">
+            <strong>Ch. Prudhvi Raj</strong>
+            <span>ID: 2500080283 • KLU</span>
+        </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main-content">
+        <header class="top-header">
+            <div>
+                <h1 id="pageTitle">Dashboard</h1>
+                <p style="color:var(--text-muted); font-size:14px;">Welcome back! Here is your daily sprint breakdown.</p>
+            </div>
+            <div style="font-size:13px; color:var(--primary); font-weight:600; background:rgba(56,189,248,0.1); padding:6px 14px; border-radius:9999px;">
+                KL University CSE
+            </div>
+        </header>
+
+        <!-- Tab: Dashboard -->
+        <section id="panel-dashboard" class="tab-panel active">
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="label">Total Tasks</div>
+                    <div class="value" id="totalTasksCount">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Completed</div>
+                    <div class="value" id="completedTasksCount" style="color:var(--success);">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Focus Sessions</div>
+                    <div class="value" style="color:var(--accent);">4</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Course Workload</div>
+                    <div class="value" style="font-size:22px; margin-top:12px;">Active</div>
+                </div>
+            </div>
+
+            <div style="background:var(--card); border:1px solid var(--card-border); border-radius:16px; padding:24px;">
+                <h2 style="font-size:18px; margin-bottom:12px;">Quick Sprint Focus</h2>
+                <p style="color:var(--text-muted); font-size:14px; margin-bottom:20px;">Use the Pomodoro Focus timer to study in 25-minute intervals, or manage your assignments using the Tasks tab.</p>
+                <button class="btn-primary" onclick="switchTab('timer')">Start Focus Session &rarr;</button>
+            </div>
+        </section>
+
+        <!-- Tab: Timer -->
+        <section id="panel-timer" class="tab-panel">
+            <div class="timer-container">
+                <div class="timer-modes">
+                    <button class="mode-btn active" data-mode="pomodoro">Pomodoro (25m)</button>
+                    <button class="mode-btn" data-mode="short">Short Break (5m)</button>
+                    <button class="mode-btn" data-mode="long">Long Break (15m)</button>
+                </div>
+                <div class="timer-clock" id="timerClock">25:00</div>
+                <div class="timer-controls">
+                    <button class="btn-primary" id="timerToggle">Start</button>
+                    <button class="btn-secondary" id="timerReset">Reset</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Tasks -->
+        <section id="panel-tasks" class="tab-panel">
+            <div class="task-form">
+                <input type="text" id="taskInput" placeholder="Add a new assignment or study task...">
+                <select id="taskPriority">
+                    <option value="high">High Priority</option>
+                    <option value="med" selected>Medium Priority</option>
+                    <option value="low">Low Priority</option>
+                </select>
+                <button class="btn-primary" id="addTaskBtn">Add Task</button>
+            </div>
+            <ul class="tasks-list" id="tasksList"></ul>
+        </section>
+
+        <!-- Tab: Notes -->
+        <section id="panel-notes" class="tab-panel">
+            <h2 style="font-size:18px; margin-bottom:12px;">Study Notes & Scratchpad</h2>
+            <p style="color:var(--text-muted); font-size:14px; margin-bottom:16px;">Notes are automatically saved to your browser's local storage.</p>
+            <textarea class="notes-area" id="notesPad"></textarea>
+        </section>
+    </main>
+
+    <script src="js/timer.js"></script>
+    <script src="js/tasks.js"></script>
+    <script>
+        function switchTab(target) {
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+
+            const panel = document.getElementById(`panel-${target}`);
+            if (panel) panel.classList.add('active');
+
+            const btn = document.querySelector(`.nav-btn[data-target="${target}"]`);
+            if (btn) btn.classList.add('active');
+
+            const titles = {
+                dashboard: 'Dashboard',
+                timer: 'Pomodoro Focus Timer',
+                tasks: 'Assignments & Task Board',
+                notes: 'Course Notes & Scratchpad'
+            };
+            document.getElementById('pageTitle').textContent = titles[target] || 'Dashboard';
+        }
+
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', () => switchTab(btn.dataset.target));
+        });
+    </script>
+</body>
+</html>
